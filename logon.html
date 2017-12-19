@@ -11,18 +11,21 @@
     -->
 	<body>
 		<script>
-			function judgePassWord(pwd1,pwd2)
+			//暂时只能判断输入密码是否一致，
+			function judgePassWord()
 			{
-				pwd1=request.getParameter("pwd1");
-				pwd2=request.getParameter("pwd2");
+				pwd11=document.getElementById("inputPassword")
+				pwd22=document.getElementById("inputPassword2")
 
-				if (pwd1.equals(pwd2))
+				if (pwd11 == pwd22)
 				{
   					
 				}
 				else
 				{
-  					alert("两次输入的密码不一致，请重新输入");
+  					alert("两次输入的密码不一致，请重新输入")
+  					pwd1.value=""
+  					pwd2.value=""
 				}
 			}
 		</script>
@@ -43,16 +46,17 @@
 				<input type="email" class="form-control" id="inputEmail" />
 			</div>
 			<!--密码长度最大10位-->
-			<lable for="inputPassword" class="col-sm-2 control-label"> 密码 </lable>
+			<lable  class="col-sm-2 control-label"> 密码 </lable>
 			<div class="col-lg-4">
-				<input type="password" maxlength="10" class="form-control" id=inputPassword name="inputPassword"/>
+				<input type="password" maxlength="10" class="form-control" id="inputPassword" />
 			</div>
 			<lable for="inputPassword2" class="col-sm-2 control-label"> 确认密码 </lable>
 			<div class="col-lg-4">
-				<input type="password" maxlength="10" class="form-control" id=inputPassword2 name="inputPassword2"/>
+				<input type="password" maxlength="10" class="form-control" id="inputPassword2"/>
 			</div>
 			<br />
-			<button type="submit" onclick="judgePassWord("inputPassword","inputPassword2")">注册</button>
+			
+			<button type="submit" onclick="judgePassWord()">注册</button>
 		</div>
 		</form>
 	</body>
