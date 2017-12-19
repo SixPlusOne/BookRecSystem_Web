@@ -7,11 +7,110 @@
 		<link rel="stylesheet" href="css/bootstrap.css" />
 		<script type="text/javascript" src="js/jquery-1.11.0.js"></script>
 		<script type="text/javascript" src="js/bootstrap.js"></script>
+		<script type="text/javascript">
+			window.onload = function(){
+				var star = document.getElementsByTagName('em');
+				var oDiv = document.getElementById('star-container');
+				var temp = 0;
+				 
+				for(var i = 0, len = star.length; i < len; i++){
+					star[i].index = i;
+					 
+					star[i].onmouseover = function(){
+						clear();
+						for(var j = 0; j < this.index + 1; j++){
+							star[j].style.background = "url(img/star_onmouseover.png) ";
+						}
+					}
+					 
+					star[i].onmouseout = function(){
+						for(var j = 0; j < this.index + 1; j++){
+							star[j].style.background = "url(img/star_hollow_hover.png) ";
+						}
+						current(temp);
+					}
+					 
+					//某颗星点击的时候
+					star[i].onclick = function(){
+						temp = this.index + 1;
+						current(temp);
+					}
+				}
+				//清除所有
+				function clear(){
+					for(var i = 0, len = star.length; i < len; i++){
+						star[i].style.background = "url(img/star_hollow_hover.png) ";
+					}
+				}
+				//显示当前第几颗星
+				function current(temp){
+					for(var i = 0; i < temp; i++){
+						star[i].style.background = "url(img/star_onmouseover.png) ";
+					}
+				}
+			};
+		</script>
 		<title>BookDetails</title>
 		<style>
 			p{
 				text-indent: 2em;
 				word-break: normal;
+			}
+
+			#star-container em {
+				float: left;
+				width: 16px;
+				height: 16px;
+				background: url(img/star_hollow_hover.png)
+			}
+
+			#star-container {
+				margin-left: -145px;
+				position: relative;
+				min-height: 1px;
+				padding-right: 1px;
+				padding-left: 1px;
+				float: left;
+				text-align: left;
+				width: 400px;
+				margin-top: 10px;
+				
+			}
+			
+			#commond{
+				height: 200px;
+				margin-left: 15px;
+				margin-right: 15px;
+				margin-top: 10px;
+				
+				
+			}
+			#modal-container {
+				height: 245px;
+				border: 1px solid #c3c3c3;
+				display: -webkit-flex; /* Safari */
+				-webkit-flex-direction: column; /* Safari 6.1+ */
+				display: flex;
+				-webkit-justify-content: flex-end;
+				justify-content: flex-end;
+				flex-direction: column;
+				
+			}
+
+			#myModalLabel {
+				text-align: left;
+			}
+			
+		
+			
+			#model-text-line {
+				position: relative;
+				min-height: 1px;
+				padding-right: 15px;
+				padding-left: 15px;
+				float: left;
+				text-align: left;
+				margin-top: 15px;
 			}
 		</style>
 	</head>
@@ -82,6 +181,56 @@
 						</td>
 					</tr>
 				</table>
+				
+			</div>
+			<div class="col-xs-4" align="center">
+				<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+					我要评价
+				</button>
+			<!-- 模态框（Modal） -->
+				<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+						<div class="modal-header">
+				
+							<h4 class="modal-title" id="myModalLabel">
+								我读过这本书
+							</h4>
+							</div>
+							<div class="modal-body" id="modal-container" >
+								
+									
+								
+								<div id="model-text-line">给个评价吧</div>
+								
+								
+								<div id="star-container"  >
+									<!-- <img id="star1" src="img/star_hollow_hover.png" />	
+									<img id="star2" src="img/star_hollow_hover.png" />
+									<img id="star3" src="img/star_hollow_hover.png" />
+									<img id="star4" src="img/star_hollow_hover.png" />
+									<img id="star5" src="img/star_hollow_hover.png" /> -->
+									<em id="star1" ></em>	
+									<em id="star2" ></em>
+									<em id="star3" ></em>
+									<em id="star4" ></em>
+									<em id="star5" ></em>
+								</div>
+								<div id="model-text-line">写个评价吧</div>
+								<input type="text" id="commond" height="400px" />
+								
+								
+							</div>
+							<div class="modal-footer">
+								<button id="click_close" type="button" class="btn btn-default" data-dismiss="modal">关闭
+								</button>
+							<button type="button" class="btn btn-primary">
+								提交
+							</button>
+							</div>
+						</div><!-- /.modal-content -->
+					</div><!-- /.modal -->
+				</div>
 			</div>
 		</div>
 		<!--内容简介-->
